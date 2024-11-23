@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 client = discord.Client(intents=discord.Intents.all())
 
 
-
 # 環境変数の読み込み
 
 load_dotenv(".env")
@@ -15,7 +14,6 @@ g_id     = os.getenv("g_id")
 wel_id   = os.getenv("wel_id")
 dc_id    = os.getenv("dc_id") 
 vc_id    = os.getenv("vc_id") 
-
 
 
 # 起動時の処理
