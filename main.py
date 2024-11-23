@@ -3,23 +3,18 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
 
-load_dotenv()
 client = discord.Client(intents=discord.Intents.all())
 
-# サーバー情報の入力
-# 「"」や「'」で囲わず、IDのみ入力　例： GUILD_ID = 0000000000000000000
 
-# サーバーID
-GUILD_ID =
 
-#サーバーへの参加時にメッセージを送信させたいチャンネルIDを指定
-WEL_ID   = 
+# 環境変数の読み込み
 
-#サーバーからの離脱時にメッセージを送信させたいチャンネルIDを指定
-DC_ID    = 
+load_dotenv(".env")
 
-#ボイスチャンネルへの接続、切断時にメッセージを送信させたいチャンネルIDを指定
-VC_ID    = 
+g_id     = os.getenv("g_id")
+wel_id   = os.getenv("wel_id")
+dc_id    = os.getenv("dc_id") 
+vc_id    = os.getenv("vc_id") 
 
 
 
@@ -43,8 +38,8 @@ async def on_ready():
 
 @client.event
 async def on_member_join(member):
-    guild = client.get_guild(GUILD_ID)
-    channel = guild.get_channel(WEL_ID)
+    guild = client.get_guild(int(g_id))
+    channel = guild.get_channel(int(wel_id))
     now = datetime.utcnow() + timedelta(hours=9)
 
     embed = discord.Embed(
@@ -65,8 +60,8 @@ async def on_member_join(member):
 
 @client.event
 async def on_member_remove(member):
-    guild = client.get_guild(GUILD_ID)
-    channel = guild.get_channel(DC_ID)
+    guild = client.get_guild(int(g_id))
+    channel = guild.get_channel(int(dc_id))
 
     now = datetime.utcnow() + timedelta(hours=9)
 
@@ -88,9 +83,9 @@ async def on_member_remove(member):
 
 @client.event
 async def on_voice_state_update(member, before, after): 
-    if member.guild.id == GUILD_ID and (before.channel != after.channel):
+    if member.guild.id == int(g_id) and (before.channel != after.channel):
         now = datetime.utcnow() + timedelta(hours=9)
-        alert_channel = client.get_channel(VC_ID)
+        channel = client.get_channel(int(vc_id))
 
         # 入室処理
 
@@ -107,7 +102,7 @@ async def on_voice_state_update(member, before, after):
             embed.add_field(name="ユーザー",value=f"{member.name}")
             embed.add_field(name="入室時刻",value=now.strftime('%Y /%m / %d　%H : %M'), inline=True)         
             
-            await alert_channel.send(embed=embed)
+            await channel.send(embed=embed)
 
         # 退室処理
 
@@ -124,7 +119,7 @@ async def on_voice_state_update(member, before, after):
             embed.add_field(name="ユーザー",value=f"{member.name}")
             embed.add_field(name="退室時刻",value=now.strftime('%Y /%m / %d　%H : %M'), inline=True)
             
-            await alert_channel.send(embed=embed)
+            await channel.send(embed=embed)
 
 
 
