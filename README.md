@@ -1,7 +1,7 @@
 # Discoird-ServerManagerBOT
-
-Discordサーバ内で活躍する管理系BOT。
-シンプルに作成しているため、自分好みにUIを簡単にアレンジすることができます。
+![image](https://github.com/user-attachments/assets/7ce94bc8-88d8-4e1e-a84c-b7a37fb91f74)
+Discordサーバー内で様々な通知を送信してくれるBOT。
+全ての通知メッセージに埋め込み式（Embed）を採用。
 
 ## 機能
 
