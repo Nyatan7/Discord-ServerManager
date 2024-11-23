@@ -9,9 +9,16 @@ client = discord.Client(intents=discord.Intents.all())
 # サーバー情報の入力
 # 「"」や「'」で囲わず、IDのみ入力　例： GUILD_ID = 0000000000000000000
 
-GUILD_ID = 
+# サーバーID
+GUILD_ID =
+
+#サーバーへの参加時にメッセージを送信させたいチャンネルIDを指定
 WEL_ID   = 
+
+#サーバーからの離脱時にメッセージを送信させたいチャンネルIDを指定
 DC_ID    = 
+
+#ボイスチャンネルへの接続、切断時にメッセージを送信させたいチャンネルIDを指定
 VC_ID    = 
 
 
